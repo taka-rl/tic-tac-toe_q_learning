@@ -1,17 +1,9 @@
-"""
-・agent, computer(random) player can randomly play first or second.先手、後手
-・ask to input a number again if the number has been already occupied
-
-"""
-
-
 import random
 from player import Player
 from board import Board
 
 
 class TicTacToeGame:
-    
     def start(self):
         print("***********************")
         print(" Welcome to Tic-Tac-Toe ")
@@ -21,19 +13,17 @@ class TicTacToeGame:
         player = Player()
         computer = Player(False)
 
+        board.print_board()
         while True:  # Game
             # set the play order
             if random.randint(0, 1):
                 # player first
-                print("----- You are player1 -----")
-                self.game(board, [player, computer])
+                self.game(board, [player, computer], player=True)
             else:
                 # computer first
-                print("----- You are player2 -----")
-                self.game(board, [computer, player])
-
+                self.game(board, [computer, player], player=False)
             player_again = input("Would you like to play again? Enter X for Yes or 0 for No: ").upper()
-            
+
             if player_again == "0":
                 print("Bye! Come back soon!")
                 break
@@ -43,11 +33,18 @@ class TicTacToeGame:
                 print("Your input was not valid but I will assume that you want to play again!")
 
     @staticmethod
-    def game(board, players):
+    def game(board, players, player):
         player1, player2 = players
+        if player:
+            print("----- You are player1 -----")
+        else:
+            print("----- You are player2 -----")
+
         while True:  # Round
-            player1_move = player1.get_move()
-            board.submit_move(player1, player1_move)
+            while True:
+                player1_move = player1.get_move()
+                if board.submit_move(player1, player1_move):
+                    break
             board.print_board()
 
             if board.check_is_game_over(player1, player1_move):
@@ -57,8 +54,10 @@ class TicTacToeGame:
                 print("It's a tie! Try again!")
                 break
             else:
-                player2_move = player2.get_move()
-                board.submit_move(player2, player2_move)
+                while True:
+                    player2_move = player2.get_move()
+                    if board.submit_move(player2, player2_move):
+                        break
                 board.print_board()
 
                 if board.check_is_game_over(player2, player2_move):

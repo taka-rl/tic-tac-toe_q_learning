@@ -33,29 +33,10 @@ class Board:
 
         if value == Board.EMPTY_CELL:
             self.game_board[row][col] = player.marker
+            return True
         else:
             print("This position is already taken. Please enter another one.")
-
-    def submit_move_rl(self, player, move):
-        if move in (1, 2, 3):
-            row = 0  # First row
-        elif move in (4, 5, 6):
-            row = 1  # Second row
-        else:
-            row = 2  # Third row
-
-        if move in (1, 4, 7):
-            col = 0  # First column
-        elif move in (2, 5, 8):
-            col = 1  # Second column
-        else:
-            col = 2  # Third column
-
-        value = self.game_board[row][col]
-        if value == Board.EMPTY_CELL:
-            self.game_board[row][col] = player.marker
-        else:
-            print("This position is already taken. Please enter another one.")
+            return False
 
     def check_is_game_over(self, player, last_move):
         return ((self.check_row(player, last_move)
