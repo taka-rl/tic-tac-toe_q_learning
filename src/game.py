@@ -1,6 +1,6 @@
 import random
-from player import Player
-from board import Board
+from src.player import Player
+from src.board import Board
 
 
 class TicTacToeGame:
@@ -38,6 +38,8 @@ class TicTacToeGame:
             print("----- You are player1 -----")
         else:
             print("----- You are player2 -----")
+
+        self.board.print_board()
 
         while True:  # Round
             # first player

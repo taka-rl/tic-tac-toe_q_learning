@@ -1,6 +1,5 @@
 import random
-from move import Move
-from board import Board
+from src.move import Move
 
 
 class Player:
