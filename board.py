@@ -2,12 +2,12 @@ class Board:
 
     EMPTY_CELL = 0
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.game_board = [[0, 0, 0],
                            [0, 0, 0],
                            [0, 0, 0]]
 
-    def print_board(self):
+    def print_board(self) -> None:
         print("\nPositions:")
         self.print_board_with_positions()
 
@@ -23,10 +23,10 @@ class Board:
         print()
 
     @staticmethod
-    def print_board_with_positions():
+    def print_board_with_positions() -> None:
         print("| 1 | 2 | 3 |\n| 4 | 5 | 6 |\n| 7 | 8 | 9 |")
 
-    def submit_move(self, player, move):
+    def submit_move(self, player, move) -> bool:
         row = move.get_row()
         col = move.get_column()
         value = self.game_board[row][col]
@@ -38,18 +38,18 @@ class Board:
             print("This position is already taken. Please enter another one.")
             return False
 
-    def check_is_game_over(self, player, last_move):
+    def check_is_game_over(self, player, last_move) -> bool:
         return ((self.check_row(player, last_move)
                  or (self.check_column(player, last_move)
                      or (self.check_diagnal(player)
                          or (self.check_antidiagnal(player))))))
 
-    def check_row(self, player, last_move):
+    def check_row(self, player, last_move) -> bool:
         row_index = last_move.get_row()
         board_row = self.game_board[row_index]  # ["0", 0, X]
         return board_row.count(player.marker) == 3
 
-    def check_column(self, player, last_move):
+    def check_column(self, player, last_move) -> bool:
         markers_count = 0
         column_index = last_move.get_column()
 
@@ -59,7 +59,7 @@ class Board:
 
         return markers_count == 3
 
-    def check_diagnal(self, player):
+    def check_diagnal(self, player) -> bool:
         markers_count = 0
         for i in range(3):
             if self.game_board[i][i] == player.marker:
@@ -67,7 +67,7 @@ class Board:
 
         return markers_count == 3
 
-    def check_antidiagnal(self, player):
+    def check_antidiagnal(self, player) -> bool:
         markers_count = 0
         for i in range(3):
             if self.game_board[i][2-i] == player.marker:
@@ -75,24 +75,25 @@ class Board:
 
         return markers_count == 3
 
-    def check_is_tie(self):
-        empty_counter = 0
+    def check_is_tie(self) -> bool:
+        empty_counter: int = 0
         for row in self.game_board:
             empty_counter += row.count(Board.EMPTY_CELL)
         return empty_counter == 0
 
-    def reset_board(self):
+    def reset_board(self) -> None:
         self.game_board = [[0, 0, 0],
                            [0, 0, 0],
                            [0, 0, 0]]
 
-    # RL
-    def get_state(self, current_player):
-        # Convert the board to a tuple and add the current player's turn
-        return tuple(tuple(row) for row in self.game_board), current_player
-
-    def get_possible_moves(self):
-        possible_actions = []
+    def get_possible_moves(self) -> list[int]:
+        """
+        Get all the possible moves
+        Return:
+            list[int]: possible_actions
+        """
+        possible_actions: list = []
+        num: int = 0
         for cols in range(0, 3):
             for rows in range(0, 3):
                 if self.game_board[cols][rows] == 0:

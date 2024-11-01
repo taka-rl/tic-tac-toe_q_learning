@@ -1,16 +1,16 @@
 class Move:
 
-    def __init__(self, value):
+    def __init__(self, value) -> None:
         self._value = value
 
     @property  # read only property
     def value(self):
         return self._value
 
-    def is_valid(self):
+    def is_valid(self) -> bool:
         return 1 <= self._value <= 9
 
-    def get_row(self):
+    def get_row(self) -> int:
         if self._value in (1, 2, 3):
             return 0  # First row
         elif self._value in (4, 5, 6):
@@ -18,7 +18,7 @@ class Move:
         else:
             return 2  # Third row
 
-    def get_column(self):
+    def get_column(self) -> int:
         if self._value in (1, 4, 7):
             return 0  # First column
         elif self._value in (2, 5, 8):
