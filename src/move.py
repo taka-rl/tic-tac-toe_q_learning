@@ -1,6 +1,6 @@
 class Move:
 
-    def __init__(self, value) -> None:
+    def __init__(self, value: int) -> None:
         self._value = value
 
     @property  # read only property

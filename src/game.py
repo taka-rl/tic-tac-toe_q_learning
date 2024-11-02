@@ -6,22 +6,49 @@ from src.board import Board
 class TicTacToeGame:
     def __init__(self) -> None:
         self.board = Board()
-        self.player = Player()
-        self.computer = Player(False)
+        self.player1 = None
+        self.player2 = None
+
+    def choose_game_mode(self) -> None:
+        """Prompt to choose a game mode."""
+        print("Choose a game mode:")
+        print("1: Human vs Human")
+        print("2: Human vs Computer")
+        print("3: Computer vs Computer")
+        # print("4: Human vs Agent")
+        # print("5: Agent vs Computer")
+        # print("6: Agent vs Agent")
+        # print("7: Training the agent")
+        mode = int(input("Enter mode number: "))
+
+        if mode == 1:
+            self.player1 = Player('human', 1)
+            self.player2 = Player('human', 2)
+        elif mode == 2:
+            self.player1 = Player('human', 1)
+            self.player2 = Player('computer', 2)
+        elif mode == 3:
+            self.player1 = Player('computer', 1)
+            self.player2 = Player('computer', 2)
+        else:
+            print("Invalid choice, defaulting to Human vs Computer.")
+            self.player1 = Player('human', 1)
+            self.player2 = Player('computer', 2)
 
     def start(self):
         print("***********************")
         print(" Welcome to Tic-Tac-Toe ")
         print("***********************")
 
-        while True:  # Game
-            # set the play order
-            if random.randint(0, 1):
-                # player first
-                self.game(player_starts=True)
-            else:
-                # computer first
-                self.game(player_starts=False)
+        self.choose_game_mode()
+
+        # Randomly assign starting player
+        current_turn = self.player1 if random.choice([True, False]) else self.player2
+
+        while True:
+            # Start the game
+            self.game(current_turn)
+
             player_again = input("Would you like to play again? Enter X for Yes or 0 for No: ").upper()
 
             if player_again == "0":
@@ -29,42 +56,34 @@ class TicTacToeGame:
                 break
             elif player_again == "X":
                 self.start_new_round(self.board)
+                # Switch turns
+                current_turn = self.player2 if current_turn == self.player1 else self.player1
             else:
                 print("Your input was not valid but I will assume that you want to play again!")
 
-    def game(self, player_starts):
-        player1, player2 = (self.player, self.computer) if player_starts else (self.computer, self.player)
-        if player_starts:
-            print("----- You are player1 -----")
-        else:
-            print("----- You are player2 -----")
-
+    def game(self, current_turn):
+        print(f'----- Player{current_turn.get_player_number} turn -----')
         self.board.print_board()
 
         while True:  # Round
-            # first player
-            player1_move = player1.get_move() if player1.is_human else player1.get_computer_move(self.board)
-            self.board.submit_move(player1, player1_move)
+            if current_turn.get_player == 'human':
+                move = current_turn.get_human_move()
+            else:
+                # computer
+                move = current_turn.get_computer_move(self.board)
+
+            self.board.submit_move(current_turn, move)
             self.board.print_board()
 
-            if self.board.check_is_game_over(player1, player1_move):
-                print("Awesome. player1 won the game!")
+            if self.board.check_is_game_over(current_turn, move):
+                print(f"Awesome. Player{current_turn.get_player_number} won the game!")
                 break
             elif self.board.check_is_tie():
                 print("It's a tie! Try again!")
                 break
-            else:
-                # second player
-                player2_move = player2.get_move() if player2.is_human else player2.get_computer_move(self.board)
-                self.board.submit_move(player2, player2_move)
-                self.board.print_board()
 
-                if self.board.check_is_game_over(player2, player2_move):
-                    print("Awesome. player2 won the game!")
-                    break
-                elif self.board.check_is_tie():
-                    print("It's a tie! Try again!")
-                    break
+            # Switch turns
+            current_turn = self.player2 if current_turn == self.player1 else self.player1
 
     @staticmethod
     def start_new_round(board):
