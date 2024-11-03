@@ -20,7 +20,7 @@ class QLearningAgent:
 
         State s: The current configuration of the board.
         Action a: Placing a marker on an empty cell.
-        Reward r: +1 for a win, -1 for a loss, 0 for a draw.
+        Reward r: +1 for a win, -1 for a loss, 0.5 for a draw.
 
     Action: Choose a move between 1 and 9
     State: board information

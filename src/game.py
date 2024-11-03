@@ -97,6 +97,10 @@ class TicTacToeGame:
                 else:
                     print("Your input was not valid but I will assume that you want to play again!")
 
+        else:
+            # Training
+            self.train_agent()
+
     def game(self, current_turn):
         print(f'----- Player{current_turn.get_player_number} : {current_turn.get_player} turn -----')
         self.board.print_board()
