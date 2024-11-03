@@ -89,8 +89,6 @@ class TicTacToeGame:
 
                 if player_again == "0":
                     print("Bye! Come back soon!")
-                    # Save Q-table after training
-                    self.q_agent.save_q_table("./training/q_table.csv")
                     break
                 elif player_again == "X":
                     self.start_new_round(self.board)
@@ -98,10 +96,6 @@ class TicTacToeGame:
                     current_turn = self.player2 if current_turn == self.player1 else self.player1
                 else:
                     print("Your input was not valid but I will assume that you want to play again!")
-
-        else:
-            # Training
-            self.train_agent()
 
     def game(self, current_turn):
         print(f'----- Player{current_turn.get_player_number} : {current_turn.get_player} turn -----')
