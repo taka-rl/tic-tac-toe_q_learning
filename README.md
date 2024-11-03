@@ -8,9 +8,8 @@ Under development
     │   ├── board.py            # for board
     │   ├── game.py             # for game
     │   ├── move.py             # for move
-    │   └── player.py           # for player
-    ├── training                # codes for training
-    │   ├── training.py         # set up for training 
+    │   ├── player.py           # for player
+    │   └── rl.py               # for Q-learning algorithm
     ├── main.py                 # Run the app
     ├── .gitignore
     ├── requirements.txt
@@ -18,6 +17,8 @@ Under development
 
 
 ## Preparation to use
+1. Clone this project  
+``` git clone https://github.com/taka-rl/tic-tac-toe_q_learning.git``` 
 
 
 ## Training
