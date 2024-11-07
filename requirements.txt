@@ -1,6 +1,9 @@
-# Standard libraries in use, no additional dependencies required.
+# Standard libraries in use, no additional dependencies required for playing Tic-Tac-Toe.
 # Modules:
 # - random: for randomness in player selection and agent actions.
 # - csv: for saving/loading Q-table data to/from CSV.
 
+# for training analysis
 matplotlib~=3.7.1
+pandas~=2.2.3
+seaborn~=0.13.2

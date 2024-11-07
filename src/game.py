@@ -1,5 +1,5 @@
 import random
-import matplotlib.pyplot as plt
+import pandas as pd
 from src.player import Player
 from src.board import Board
 from src.move import Move
@@ -47,7 +47,7 @@ class TicTacToeGame:
             self.player1 = Player('human', 1)
             self.player2 = Player('computer', 2)
 
-    def start(self):
+    def start(self) -> None:
         print("***********************")
         print(" Welcome to Tic-Tac-Toe ")
         print("***********************")
@@ -77,7 +77,7 @@ class TicTacToeGame:
             else:
                 print("Your input was not valid but I will assume that you want to play again!")
 
-    def game(self, current_turn):
+    def game(self, current_turn) -> None:
         print(f'----- Player{current_turn.get_player_number} : {current_turn.get_player} turn -----')
         self.board.print_board()
         state = str(self.board.game_board)
@@ -109,14 +109,14 @@ class TicTacToeGame:
             current_turn = self.player2 if current_turn == self.player1 else self.player1
 
     @staticmethod
-    def start_new_round(board):
+    def start_new_round(board) -> None:
         print("***************")
         print(" New Round ")
         print("***************")
         board.reset_board()
         board.print_board()
 
-    def train_agent(self, num_episodes):
+    def train_agent(self, num_episodes: int) -> None:
         """Automatically train the Q-learning agent with a specified number of episodes."""
         print("Training the agent")
         self.player1 = Player('agent', 1)
@@ -182,11 +182,21 @@ class TicTacToeGame:
 
         # Save Q-table after training
         self.q_agent.save_q_table("q_table.csv")
+        self.save_training_data(episode_rewards)
         print(f"Training complete: {wins} Wins, {losses} Losses, {ties} Ties")
 
-        # Plot reward progress if matplotlib is available
-        plt.plot(range(num_episodes), episode_rewards)
-        plt.xlabel("Episodes")
-        plt.ylabel("Cumulative Reward")
-        plt.title("Reward Progress Over Training")
-        plt.show()
+    @staticmethod
+    def save_training_data(episode_rewards: list) -> None:
+        """Save episode rewards and game results to CSV files for analysis."""
+        episode_len = len(episode_rewards)
+        game_results = ['win'] * episode_len
+        for i in range(0, episode_len):
+            if episode_rewards[i] == -1.0:
+                game_results[i] = 'lose'
+            elif episode_rewards[i] == 0.5:
+                game_results[i] = 'tie'
+
+        training_result_df = pd.DataFrame({"Episode": range(len(episode_rewards)),
+                                           "Reward": episode_rewards, "Result": game_results})
+        training_result_df.to_csv("training_result.csv", index=False)
+        print("Training data saved.")

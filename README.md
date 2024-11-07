@@ -12,6 +12,7 @@ Under development
     │   └── rl.py               # for Q-learning algorithm
     ├── training                # codes for training
     │   ├── training.py         # for training
+    │   ├── result_analysis.py  # for analyzing the training result
     │   └── q_table.csv         # Q-table file
     ├── main.py                 # Run the app
     ├── .gitignore
