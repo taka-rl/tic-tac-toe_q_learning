@@ -29,8 +29,9 @@ print(game_summary)
 
 # Plot cumulative reward
 plt.figure(figsize=(10, 5))
-plt.plot(training_result_df["Episode"], training_result_df["Reward"], label="Reward per Episode")
-plt.plot(training_result_df["Episode"], training_result_df["Running_Avg_Reward"], label="Running Avg Reward (100 episodes)", linestyle="--")
+plt.plot(training_result_df["Episode"], training_result_df["Reward"], label="Reward per Episode", linewidth=0.5)
+plt.plot(training_result_df["Episode"], training_result_df["Running_Avg_Reward"],
+         label="Running Avg Reward (100 episodes)", linestyle="--")
 plt.xlabel("Episode")
 plt.ylabel("Reward")
 plt.title("Reward Progress Over Training")
