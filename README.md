@@ -10,6 +10,9 @@ Under development
     │   ├── move.py             # for move
     │   ├── player.py           # for player
     │   └── rl.py               # for Q-learning algorithm
+    ├── training                # codes for training
+    │   ├── training.py         # for training
+    │   └── q_table.csv         # Q-table file
     ├── main.py                 # Run the app
     ├── .gitignore
     ├── requirements.txt
