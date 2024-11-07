@@ -32,9 +32,9 @@ Choose a game mode between 1 and 6.
 ![image](https://github.com/user-attachments/assets/d3f527d9-5600-40a5-b7e0-9ece4d765c8f)
 
 ## Training
-If you would like to train the q-learning agent, run training.py
-You can set the number of episodes by changing num_episodes.
-![image](https://github.com/user-attachments/assets/78396e65-089b-42f5-87ea-908cad0082de)
+If you would like to train the q-learning agent, run training.py  
+You can set the number of episodes by changing num_episodes.  
+![image](https://github.com/user-attachments/assets/78396e65-089b-42f5-87ea-908cad0082de)  
 
 After the training, q_table.csv and training_result.csv files are saved in the training folder.  
 q_table.csv looks like this.  
