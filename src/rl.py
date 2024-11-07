@@ -83,7 +83,7 @@ class QLearningAgent:
         """Decay epsilon to reduce exploration over time."""
         self.epsilon *= decay_rate
 
-    def save_q_table(self, filename="./training/q_table.csv"):
+    def save_q_table(self, filename="../training/q_table.csv"):
         """Save Q-table to a CSV file."""
         with open(filename, mode='w', newline='') as file:
             writer = csv.writer(file)
@@ -93,7 +93,7 @@ class QLearningAgent:
                     writer.writerow([state, action, q_value])
             print("Saved Q-table")
 
-    def load_q_table(self, filename="./training/q_table.csv"):
+    def load_q_table(self, filename="../training/q_table.csv"):
         """Load Q-table from a CSV file."""
         try:
             with open(filename, mode='r') as file:

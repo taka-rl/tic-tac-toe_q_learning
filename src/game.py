@@ -16,7 +16,6 @@ class TicTacToeGame:
     def choose_game_mode(self) -> None:
         """Prompt to choose a game mode."""
         print("Choose a game mode:")
-        mode = int(input("Enter mode number: "))
         print("Choose a game mode:")
         print("1: Human vs Human")
         print("2: Human vs Computer")
@@ -24,6 +23,7 @@ class TicTacToeGame:
         print("4: Human vs Agent")
         print("5: Agent vs Computer")
         print("6: Agent vs Agent")
+        mode = int(input("Enter mode number: "))
         if mode == 1:
             self.player1 = Player('human', 1)
             self.player2 = Player('human', 2)
@@ -120,7 +120,7 @@ class TicTacToeGame:
         """Automatically train the Q-learning agent with a specified number of episodes."""
         print("Training the agent")
         self.player1 = Player('agent', 1)
-        self.player2 = Player('agent', 2)
+        self.player2 = Player('computer', 2)
 
         self.q_agent.load_q_table()  # Load existing Q-table if any
 

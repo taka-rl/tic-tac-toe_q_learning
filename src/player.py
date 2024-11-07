@@ -34,10 +34,10 @@ class Player:
             raise ValueError("get_move() should not be called directly for the computer. Use get_computer_move(board).")
 
     @staticmethod
-    def get_human_move() -> Move:
+    def get_human_move() -> int:
         while True:
             user_input = int(input("Please enter your move(1-9):"))
-            move = Move(user_input)
+            move = user_input
             if move.is_valid():
                 break
             else:
@@ -45,11 +45,11 @@ class Player:
         return move
 
     @staticmethod
-    def get_computer_move(board) -> Move:
+    def get_computer_move(board) -> int:
         # random_choice = random.choice(range(1, 10))
         # move = Move(random_choice)
         available_actions = board.get_possible_moves()
         random_choice = random.choice(available_actions)
-        move = Move(random_choice)
-        print("Computer move (1-9):", move.value)
+        move = random_choice
+        print("Computer move (1-9):", move)
         return move
