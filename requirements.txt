@@ -2,3 +2,5 @@
 # Modules:
 # - random: for randomness in player selection and agent actions.
 # - csv: for saving/loading Q-table data to/from CSV.
+
+matplotlib~=3.7.1
