@@ -16,7 +16,6 @@ class TicTacToeGame:
     def choose_game_mode(self) -> None:
         """Prompt to choose a game mode."""
         print("Choose a game mode:")
-        print("Choose a game mode:")
         print("1: Human vs Human")
         print("2: Human vs Computer")
         print("3: Computer vs Computer")
