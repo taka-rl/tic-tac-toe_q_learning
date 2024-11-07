@@ -4,7 +4,10 @@ import csv
 
 class QLearningAgent:
     """
-    Q-learning equation:
+    Q-learning algorithm:
+        Q-learning is a model-free, value-based, off-policy reinforcement learning (RL) algorithm
+        based on the Bellman equation. It uses a Q-table to store Q-values for state-action pairs,
+        which represent the expected future rewards for taking specific actions in specific states.
 
     Steps in Q-Learning Algorithm:
         1: Initialize the Q-values for all state-action pairs arbitrarily (often to zero).
@@ -13,29 +16,40 @@ class QLearningAgent:
         4: Perform the action a and observe the reward r and the next state
         5: Update the Q-value using the Q-learning equation.
         6: Set the current state s to the next state
-        7: Repeat steps 3-6 until the termination condition is met.
+        7: Repeat steps 2-6 until the termination condition is met.
 
-    Q values are updated by the following equation:
-        Q_new(s,a) = (1 - α) * Q(s,a) + α * (r + γ * max(Q(s_dash,a_dash)) - Q(s,a))
-
-        State s: The current configuration of the board.
-        Action a: Placing a marker on an empty cell.
-        Reward r: +1 for a win, -1 for a loss, 0.5 for a draw.
-
-    Action: Choose a move between 1 and 9
-    State: board information
-    Reward:
-        win: +1 reward
-        tie: 0.5 reward
-        lose: -1 reward
-
-    Q table: stored as a csv file
+    Q-table:
+        The Q-table is defined as a list data type and is stored as a csv file with the following format.
         state, action, q_value
-            "[[0, 0, 0], [0, 0, 0], [0, 0, 0]]",1,0.0
+            "[[0, 0, 0], [0, 0, 0], [0, 0, 0]]", 1, 0.0
+
+    Q-value Update Equation:
+        The Q-values are updated using the standard Q-learning update equation:
+            Q_new(s, a) = Q(s, a) + alpha * (r + γ * max(Q(s', a')) - Q(s, a))
+        Where:
+            - Q(s, a): Current Q-value for the state-action pair (s, a)
+            - alpha: Learning rate
+            - γ: Discount factor (gamma)
+            - max(Q(s', a')): Maximum Q-value for the next state s'
+            - s: Current state
+            - a: Action taken in the current state
+            - r: Reward received after taking action a
+        Reward values:
+            - Win: +1
+            - Tie: +0.5
+            - Loss: -1
+
+    Reinforcement Learning (RL) Environment:
+        - Action: Choose a move between 1 and 9.
+        - State: Board configuration represented as a string, e.g., "[[0, 0, 0], [0, 0, 0], [0, 0, 0]]".
+        - Reward:
+            - Win: +1
+            - Tie: +0.5
+            - Loss: -1
 
     Links:
         ・Introduce Q-learning algorithm
-        https://chat.openai.com/share/6075678c-eb0d-4420-87cb-81bdd79841ac
+        https://towardsdatascience.com/an-ai-agent-learns-to-play-tic-tac-toe-part-3-training-a-q-learning-rl-agent-2871cef2faf0
         https://medium.com/@ardra4/tic-tac-toe-using-q-learning-a-reinforcement-learning-approach-d606cfdd64a3
         https://medium.com/@kaneel.senevirathne/teaching-agents-to-play-tic-tac-toe-using-reinforcement-learning-7a9d4d6ee9b3
         https://www.datacamp.com/tutorial/introduction-q-learning-beginner-tutorial?dc_referrer=https%3A%2F%2Fwww.google.com%2F
