@@ -7,11 +7,11 @@ from src.rl import QLearningAgent
 
 
 class TicTacToeGame:
-    def __init__(self) -> None:
+    def __init__(self, learning_rate=0.1, discount_factor=0.9, epsilon=0.1) -> None:
         self.board = Board()
         self.player1 = None
         self.player2 = None
-        self.q_agent = QLearningAgent()
+        self.q_agent = QLearningAgent(learning_rate=learning_rate, discount_factor=discount_factor, epsilon=epsilon)
 
     def choose_game_mode(self) -> None:
         """Prompt to choose a game mode."""
@@ -182,6 +182,8 @@ class TicTacToeGame:
         self.q_agent.save_q_table("q_table.csv")
         self.save_training_data(episode_rewards)
         print(f"Training complete: {wins} Wins, {losses} Losses, {ties} Ties")
+        print(f'Training parameters: learning rate: {self.q_agent.alpha}, discount factor: {self.q_agent.gamma}, '
+              f'epsilon:  {self.q_agent.epsilon}')
 
     @staticmethod
     def save_training_data(episode_rewards: list) -> None:
