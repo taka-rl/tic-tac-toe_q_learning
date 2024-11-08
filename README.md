@@ -89,16 +89,19 @@ Choose a game mode between 1 and 6.
 ![image](https://github.com/user-attachments/assets/d3f527d9-5600-40a5-b7e0-9ece4d765c8f)
 
 ## Training
-### Training preparation
-If you would like to train the q-learning agent, run training.py  
-You can set the number of episodes by changing num_episodes.  
-![image](https://github.com/user-attachments/assets/78396e65-089b-42f5-87ea-908cad0082de)
+### Training preparation  
+1. You can set parameters for the training in training.py     
+![image](https://github.com/user-attachments/assets/9e20574f-72a4-47c4-a8f8-f17d2f6d423c)
 
-After the training, q_table.csv and training_result.csv files are saved in the training folder.  
-q_table.csv looks like this.  
-![image](https://github.com/user-attachments/assets/4ed68e55-4962-431f-a8e9-ac6438b9fd37)  
-training_result.csv looks like this.  
-![image](https://github.com/user-attachments/assets/e57ead6e-f8a4-4460-bf55-ea26671b5c36)  
+2. When you are ready, then run training.py  
+3. When the training finished, the following messages show up  
+![image](https://github.com/user-attachments/assets/b6cd8e47-0b38-428d-8ba9-afb9ec89295b)
+
+4. After the training, q_table.csv and training_result.csv files are saved in the training folder.  
+    q_table.csv looks like this.  
+    ![image](https://github.com/user-attachments/assets/4ed68e55-4962-431f-a8e9-ac6438b9fd37)  
+    training_result.csv looks like this.  
+    ![image](https://github.com/user-attachments/assets/e57ead6e-f8a4-4460-bf55-ea26671b5c36)  
 
 ### Training analysis
 
