@@ -89,15 +89,14 @@ class TicTacToeGame:
                 # agent
                 available_actions = self.board.get_possible_moves()
                 move = self.q_agent.choose_action(state, available_actions)
-                move = Move(move)
             else:
                 # computer
                 move = current_turn.get_computer_move(self.board)
 
-            self.board.submit_move(current_turn, move)
+            self.board.submit_move(current_turn, Move(move))
             self.board.print_board()
 
-            if self.board.check_is_game_over(current_turn, move):
+            if self.board.check_is_game_over(current_turn, Move(move)):
                 print(f"Awesome. Player{current_turn.get_player_number} : {current_turn.get_player} won the game!")
                 break
             elif self.board.check_is_tie():

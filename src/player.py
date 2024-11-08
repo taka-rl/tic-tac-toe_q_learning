@@ -38,7 +38,7 @@ class Player:
         while True:
             user_input = int(input("Please enter your move(1-9):"))
             move = user_input
-            if move.is_valid():
+            if Move(user_input).is_valid():
                 break
             else:
                 print("Please enter an integer between 1 and 9.")

@@ -63,13 +63,13 @@ class QLearningAgent:
         self.gamma = discount_factor  # Discount factor
         self.epsilon = epsilon  # Exploration rate
 
-    def get_q_value(self, state, action):
+    def get_q_value(self, state, action) -> dict:
         """Get the Q-value for a given state-action pair, initializing to 0 if not present."""
         if state not in self.q_table:
             self.q_table[state] = {}
         return self.q_table[state].get(action, 0.0)
 
-    def update_q_value(self, state, action, next_state, reward):
+    def update_q_value(self, state, action, next_state, reward) -> None:
         """Update the Q-value for a state-action pair using the Q-learning update rule."""
         current_q = self.get_q_value(state, action)
         future_q_values = [self.get_q_value(next_state, next_action) for next_action in
@@ -80,7 +80,7 @@ class QLearningAgent:
         new_q = current_q + self.alpha * (reward + self.gamma * max_future_q - current_q)
         self.q_table[state][action] = new_q
 
-    def choose_action(self, state, available_actions):
+    def choose_action(self, state, available_actions) -> int:
         """Choose an action based on epsilon-greedy policy."""
         if random.uniform(0, 1) < self.epsilon:  # Explore with probability epsilon
             return random.choice(available_actions)
@@ -93,7 +93,7 @@ class QLearningAgent:
         best_actions = [action for action, q in q_values.items() if q == max_q]
         return random.choice(best_actions)
 
-    def decay_epsilon(self, decay_rate=0.99):
+    def decay_epsilon(self, decay_rate=0.99) -> None:
         """Decay epsilon to reduce exploration over time."""
         self.epsilon *= decay_rate
 
@@ -107,7 +107,7 @@ class QLearningAgent:
                     writer.writerow([state, action, q_value])
             print("Saved Q-table")
 
-    def load_q_table(self, filename="../training/q_table.csv"):
+    def load_q_table(self, filename="../training/q_table.csv") -> None:
         """Load Q-table from a CSV file."""
         try:
             with open(filename, mode='r') as file:
