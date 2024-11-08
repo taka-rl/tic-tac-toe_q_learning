@@ -97,7 +97,7 @@ class QLearningAgent:
         """Decay epsilon to reduce exploration over time."""
         self.epsilon *= decay_rate
 
-    def save_q_table(self, filename="../training/q_table.csv"):
+    def save_q_table(self, filename):
         """Save Q-table to a CSV file."""
         with open(filename, mode='w', newline='') as file:
             writer = csv.writer(file)

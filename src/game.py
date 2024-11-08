@@ -114,7 +114,7 @@ class TicTacToeGame:
         board.reset_board()
         board.print_board()
 
-    def train_agent(self, num_episodes: int) -> None:
+    def train_agent(self, num_episodes: int) -> list:
         """Automatically train the Q-learning agent with a specified number of episodes."""
         print("Training the agent")
         self.player1 = Player('agent', 1)
@@ -177,16 +177,10 @@ class TicTacToeGame:
 
             # Decay exploration rate to focus on exploitation over time
             self.q_agent.decay_epsilon()
-
-        # Save Q-table after training
-        self.q_agent.save_q_table("q_table.csv")
-        self.save_training_data(episode_rewards)
-        print(f"Training complete: {wins} Wins, {losses} Losses, {ties} Ties")
-        print(f'Training parameters: learning rate: {self.q_agent.alpha}, discount factor: {self.q_agent.gamma}, '
-              f'epsilon:  {self.q_agent.epsilon}')
+        return episode_rewards
 
     @staticmethod
-    def save_training_data(episode_rewards: list) -> None:
+    def save_training_data(episode_rewards: list, filename: str) -> None:
         """Save episode rewards and game results to CSV files for analysis."""
         episode_len = len(episode_rewards)
         game_results = ['win'] * episode_len
@@ -198,5 +192,5 @@ class TicTacToeGame:
 
         training_result_df = pd.DataFrame({"Episode": range(len(episode_rewards)),
                                            "Reward": episode_rewards, "Result": game_results})
-        training_result_df.to_csv("training_result.csv", index=False)
+        training_result_df.to_csv(filename, index=False)
         print("Training data saved.")
