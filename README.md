@@ -1,4 +1,5 @@
 # Tic-tac-toe with Q-learning
+This is a tic-tac-toe game built using Q-learning, a reinforcement learning algorithm.
 
 ## About Q-learning
     Q-learning algorithm:
@@ -62,6 +63,8 @@
     │   ├── player.py           # for player
     │   └── rl.py               # for Q-learning algorithm
     ├── training                # codes for training
+    │   ├── training_results    # 
+    │   │    └── plan1          # training plan1 result files
     │   ├── training.py         # for training
     │   ├── result_analysis.py  # for analyzing the training result
     │   ├── training_result.csv # training result file
@@ -103,8 +106,21 @@ Choose a game mode between 1 and 6.
     training_result.csv looks like this.  
     ![image](https://github.com/user-attachments/assets/e57ead6e-f8a4-4460-bf55-ea26671b5c36)  
 
-### Training analysis
-
 
 ## Result
+### Plan 1: Same Parameter Settings with Different Numbers of Episodes
+Expectation: As the number of episodes increases, the average reward is expected to increase.  
+Result: The average reward increased, and the number of wins also rose.  
+
+The parameter settings are as follows in config.py:
+```
+CONFIGURATIONS = [
+    Config(learning_rate=0.1, discount_factor=0.9, epsilon=0.1, num_episodes=1000, identifier="training1_1"),
+    Config(learning_rate=0.1, discount_factor=0.9, epsilon=0.1, num_episodes=10000, identifier="training1_2"),
+    Config(learning_rate=0.1, discount_factor=0.9, epsilon=0.1, num_episodes=100000, identifier="training1_3"),
+]
+```
+Average rewards:
+
+Win/Lost/Tie: 
 
