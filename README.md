@@ -68,7 +68,7 @@ This is a tic-tac-toe game built using Q-learning, a reinforcement learning algo
     │   ├── training.py         # for training
     │   ├── result_analysis.py  # for analyzing the training result
     │   ├── training_result.csv # training result file
-    │   └── q_table.csv         # Q-table file
+    │   └── q_table.csv         # Q-table file generated after 100,000 episodes
     ├── main.py                 # Run the app
     ├── .gitignore
     ├── requirements.txt
@@ -93,8 +93,8 @@ Choose a game mode between 1 and 6.
 
 ## Training
 ### Training preparation  
-1. You can set parameters for the training in training.py     
-![image](https://github.com/user-attachments/assets/9e20574f-72a4-47c4-a8f8-f17d2f6d423c)
+1. You can set parameters for the training in config.py  
+![Screenshot 2024-11-11 at 10 23 30](https://github.com/user-attachments/assets/1f6e7db7-3d50-42ce-81cc-77329ce34293)
 
 2. When you are ready, then run training.py  
 3. When the training finished, the following messages show up  
@@ -120,7 +120,18 @@ CONFIGURATIONS = [
     Config(learning_rate=0.1, discount_factor=0.9, epsilon=0.1, num_episodes=100000, identifier="training1_3"),
 ]
 ```
-Average rewards:
+Average rewards:  
+The number of episode is 1000.  
+![Screenshot 2024-11-11 at 10 16 51](https://github.com/user-attachments/assets/e980ce33-3be0-4274-8609-91a48cd51a8c)
 
-Win/Lost/Tie: 
+The number of episode is 10000.  
+![Screenshot 2024-11-11 at 10 17 05](https://github.com/user-attachments/assets/b9e39e47-607f-4e9e-aaff-4bb5ce6bca17)
+
+The number of episode is 100000.  
+![Screenshot 2024-11-11 at 10 17 15](https://github.com/user-attachments/assets/998eb3a6-8172-4286-86d9-03387f4369da)
+
+
+Win/Lost/Tie:  
+Through the training, the number of win increased gradually.   
+![Screenshot 2024-11-11 at 10 16 24](https://github.com/user-attachments/assets/e64eddff-ef0a-43ce-83e8-0a91f5eeef82)
 
