@@ -1,6 +1,8 @@
 # Tic-tac-toe with Q-learning
 This is a tic-tac-toe game built using Q-learning, a reinforcement learning algorithm.
 
+As a result, after 100,000 training episodes, the agent won close to 80% of the games against a computer that makes random moves. The average reward was approximately 0.7, and the maximum reward exceeded 0.9.
+
 ## About Q-learning
     Q-learning algorithm:
         Q-learning is a model-free, value-based, off-policy reinforcement learning (RL) algorithm
@@ -93,6 +95,8 @@ Choose a game mode between 1 and 6.
 
 ## Training
 ### Training preparation  
+During training, the agent plays against a computer that makes random moves.
+
 1. You can set parameters for the training in config.py  
 ![Screenshot 2024-11-11 at 10 23 30](https://github.com/user-attachments/assets/1f6e7db7-3d50-42ce-81cc-77329ce34293)
 
@@ -120,7 +124,7 @@ CONFIGURATIONS = [
     Config(learning_rate=0.1, discount_factor=0.9, epsilon=0.1, num_episodes=100000, identifier="training1_3"),
 ]
 ```
-Average rewards:  
+The average reward was calculated every 100 games.
 The number of episode is 1000.  
 ![Screenshot 2024-11-11 at 10 16 51](https://github.com/user-attachments/assets/e980ce33-3be0-4274-8609-91a48cd51a8c)
 
@@ -129,6 +133,7 @@ The number of episode is 10000.
 
 The number of episode is 100000.  
 ![Screenshot 2024-11-11 at 10 17 15](https://github.com/user-attachments/assets/998eb3a6-8172-4286-86d9-03387f4369da)
+![Screenshot 2024-11-11 at 10 53 19](https://github.com/user-attachments/assets/18fbdc91-8d51-4966-8621-c18420b377f6)
 
 
 Win/Lost/Tie:  
