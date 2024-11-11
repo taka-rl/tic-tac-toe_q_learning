@@ -1,7 +1,7 @@
 # Tic-tac-toe with Q-learning
 This is a tic-tac-toe game built using Q-learning, a reinforcement learning algorithm.
 
-As a result, after 100,000 training episodes, the agent won close to 80% of the games against a computer that makes random moves. The average reward was approximately 0.7, and the maximum reward exceeded 0.9.
+As a result of the training with 100,000 episodes where the agent played against a computer that made random moves, the agent won close to 80% of the games against the computer. The average reward was approximately 0.7, and the maximum reward exceeded 0.9.
 
 ## About Q-learning
     Q-learning algorithm:
@@ -55,7 +55,6 @@ As a result, after 100,000 training episodes, the agent won close to 80% of the 
         https://www.datacamp.com/tutorial/introduction-q-learning-beginner-tutorial?dc_referrer=https%3A%2F%2Fwww.google.com%2F
         https://towardsdatascience.com/reinforcement-learning-implement-tictactoe-189582bea542
 
-
 ## Folder structure
 
     ├── src                     # codes for tic-tac-toe environment
@@ -95,8 +94,6 @@ Choose a game mode between 1 and 6.
 
 ## Training
 ### Training preparation  
-During training, the agent plays against a computer that makes random moves.
-
 1. You can set parameters for the training in config.py  
 ![Screenshot 2024-11-11 at 10 23 30](https://github.com/user-attachments/assets/1f6e7db7-3d50-42ce-81cc-77329ce34293)
 
@@ -113,6 +110,7 @@ During training, the agent plays against a computer that makes random moves.
 
 ## Result
 ### Plan 1: Same Parameter Settings with Different Numbers of Episodes
+Training environment: During training, the agent plays against a computer that makes random moves.  
 Expectation: As the number of episodes increases, the average reward is expected to increase.  
 Result: The average reward increased, and the number of wins also rose.  
 
