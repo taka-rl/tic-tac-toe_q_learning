@@ -7,11 +7,11 @@ from src.rl import QLearningAgent
 
 
 class TicTacToeGame:
-    def __init__(self) -> None:
+    def __init__(self, learning_rate=0.1, discount_factor=0.9, epsilon=0.1) -> None:
         self.board = Board()
         self.player1 = None
         self.player2 = None
-        self.q_agent = QLearningAgent()
+        self.q_agent = QLearningAgent(learning_rate=learning_rate, discount_factor=discount_factor, epsilon=epsilon)
 
     def choose_game_mode(self) -> None:
         """Prompt to choose a game mode."""
@@ -89,15 +89,14 @@ class TicTacToeGame:
                 # agent
                 available_actions = self.board.get_possible_moves()
                 move = self.q_agent.choose_action(state, available_actions)
-                move = Move(move)
             else:
                 # computer
                 move = current_turn.get_computer_move(self.board)
 
-            self.board.submit_move(current_turn, move)
+            self.board.submit_move(current_turn, Move(move))
             self.board.print_board()
 
-            if self.board.check_is_game_over(current_turn, move):
+            if self.board.check_is_game_over(current_turn, Move(move)):
                 print(f"Awesome. Player{current_turn.get_player_number} : {current_turn.get_player} won the game!")
                 break
             elif self.board.check_is_tie():
@@ -115,7 +114,7 @@ class TicTacToeGame:
         board.reset_board()
         board.print_board()
 
-    def train_agent(self, num_episodes: int) -> None:
+    def train_agent(self, num_episodes: int) -> list:
         """Automatically train the Q-learning agent with a specified number of episodes."""
         print("Training the agent")
         self.player1 = Player('agent', 1)
@@ -178,14 +177,10 @@ class TicTacToeGame:
 
             # Decay exploration rate to focus on exploitation over time
             self.q_agent.decay_epsilon()
-
-        # Save Q-table after training
-        self.q_agent.save_q_table("q_table.csv")
-        self.save_training_data(episode_rewards)
-        print(f"Training complete: {wins} Wins, {losses} Losses, {ties} Ties")
+        return episode_rewards
 
     @staticmethod
-    def save_training_data(episode_rewards: list) -> None:
+    def save_training_data(episode_rewards: list, filename: str) -> None:
         """Save episode rewards and game results to CSV files for analysis."""
         episode_len = len(episode_rewards)
         game_results = ['win'] * episode_len
@@ -197,5 +192,5 @@ class TicTacToeGame:
 
         training_result_df = pd.DataFrame({"Episode": range(len(episode_rewards)),
                                            "Reward": episode_rewards, "Result": game_results})
-        training_result_df.to_csv("training_result.csv", index=False)
+        training_result_df.to_csv(filename, index=False)
         print("Training data saved.")
