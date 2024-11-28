@@ -107,6 +107,16 @@ Choose a game mode between 1 and 6.
     training_result.csv looks like this.  
     ![image](https://github.com/user-attachments/assets/e57ead6e-f8a4-4460-bf55-ea26671b5c36)  
 
+## How to use result_analysis.py for result analysis
+1. Make sure the result file path in result_analysis.py
+   ![image](https://github.com/user-attachments/assets/7fce67d6-558b-4423-8f5a-c8c083c7d2f3)
+
+2. Make sure the identifier value in CONFIGURATION defined in config.py  
+   The identifier values must be matched with the result files.
+
+3. Run result_analysis.py
+   You will see the figures on the Result section.  
+
 
 ## Result
 ### Plan 1: Same Parameter Settings with Different Numbers of Episodes
