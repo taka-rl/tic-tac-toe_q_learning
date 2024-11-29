@@ -1,7 +1,7 @@
 # Tic-tac-toe with Q-learning
 This is a tic-tac-toe game built using Q-learning, a reinforcement learning algorithm.
 
-As a result of the training with 100,000 episodes where the agent played against a computer that made random moves, the agent won close to 80% of the games against the computer. The average reward was approximately 0.7, and the maximum reward exceeded 0.9.
+As a result of the training with 100,000 episodes where the agent played against a computer that made random moves, the agent won at around 75% of the games against the computer. The average reward was approximately 0.7, and the maximum reward exceeded 0.9.
 
 ## About Q-learning
     Q-learning algorithm:
@@ -119,12 +119,11 @@ Choose a game mode between 1 and 6.
 
 
 ## Result
-### Plan 1: Same Parameter Settings with Different Numbers of Episodes
-Training environment: During training, the agent plays against a computer that makes random moves.  
-Expectation: As the number of episodes increases, the average reward is expected to increase.  
-Result: The average reward increased, and the number of wins also rose.  
-
-The parameter settings are as follows in config.py:
+### Plan 1: Same Parameter Settings with Different Numbers of Episodes  
+Training environment
+- During training, the agent plays against a computer that makes random moves.
+- Reward setting: win=1, tie=0.5, lose=-1
+- The parameter settings are as follows in config.py:
 ```
 CONFIGURATIONS = [
     Config(learning_rate=0.1, discount_factor=0.9, epsilon=0.1, num_episodes=1000, identifier="training1_1"),
@@ -132,19 +131,21 @@ CONFIGURATIONS = [
     Config(learning_rate=0.1, discount_factor=0.9, epsilon=0.1, num_episodes=100000, identifier="training1_3"),
 ]
 ```
+Expectation: As the number of episodes increases, the average reward is expected to increase.  
+Result: The average reward increased, and the number of wins also rose.  
+
+
 The average reward was calculated every 100 games.
 The number of episode is 1000.  
-![Screenshot 2024-11-11 at 10 16 51](https://github.com/user-attachments/assets/e980ce33-3be0-4274-8609-91a48cd51a8c)
+![image](https://github.com/user-attachments/assets/929e6e52-d8cb-46b2-a3a7-43354cd9d029)
 
 The number of episode is 10000.  
-![Screenshot 2024-11-11 at 10 17 05](https://github.com/user-attachments/assets/b9e39e47-607f-4e9e-aaff-4bb5ce6bca17)
+![image](https://github.com/user-attachments/assets/98de423d-3650-464b-997d-a556b017a35c)
 
 The number of episode is 100000.  
-![Screenshot 2024-11-11 at 10 17 15](https://github.com/user-attachments/assets/998eb3a6-8172-4286-86d9-03387f4369da)
-![Screenshot 2024-11-11 at 10 53 19](https://github.com/user-attachments/assets/18fbdc91-8d51-4966-8621-c18420b377f6)
+![image](https://github.com/user-attachments/assets/857a8069-309d-4447-a4a1-bd40c267fffb)
+![image](https://github.com/user-attachments/assets/068547f0-fd95-4824-991d-b64a9b122756)
 
-
-Win/Lost/Tie:  
-Through the training, the number of win increased gradually.   
-![Screenshot 2024-11-11 at 10 16 24](https://github.com/user-attachments/assets/e64eddff-ef0a-43ce-83e8-0a91f5eeef82)
-
+Win/Lose/Tie:  
+Through the training, the number of win increased, the number of lose decreased gradually.   
+![image](https://github.com/user-attachments/assets/5c3700ef-904b-429e-af85-bf0a1b35ab64)
