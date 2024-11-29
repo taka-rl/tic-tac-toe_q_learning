@@ -33,7 +33,7 @@ q_tables = pd.DataFrame(columns=["state", "action", "q_value", "config_id"])
 training_results = pd.DataFrame(columns=["Episode", "Reward", "Result", "Running_Avg_Reward", "config_id"])
 
 # Load each Q-table and result file for each configuration
-file_path = "../training/training_results/plan1/"
+file_path = "training_results/plan1/"
 for config in CONFIGURATIONS:
     config_id = config.identifier
     q_table_path = file_path + f"{config_id}_q_table.csv"
@@ -89,11 +89,11 @@ else:  # Separate plots
         plt.legend()
 
 
-# Plot Win/Loss/Tie Distribution using Bar charts
+# Plot Win/Lose/Tie Distribution using Bar charts
 if plot_mode == "combined":
     plt.figure(figsize=(12, 6))
     game_summary.unstack().plot(kind="bar", stacked=True)
-    plt.title("Win/Loss/Tie Distribution by Configuration")
+    plt.title("Win/Lose/Tie Distribution by Configuration")
     plt.xlabel("Configuration")
     plt.ylabel("Frequency")
     plt.xticks(rotation=45)
@@ -110,7 +110,7 @@ else:  # Separate plots using Pie charts
         plt.figure(figsize=(6, 6))
         plt.pie(config_summary, labels=config_summary.index, autopct="%1.1f%%", startangle=140,
                 colors=["green", "red", "gray"])
-        plt.title(f"Win/Loss/Tie Distribution - Configuration {config_id}")
+        plt.title(f"Win/Lose/Tie Distribution - Configuration {config_id}")
 
 
 # Q-values Heatmap for a specific example state

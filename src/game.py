@@ -8,7 +8,7 @@ from src.rl import QLearningAgent
 
 class TicTacToeGame:
     WIN = 1
-    TIE = 0
+    TIE = 0.5
     LOSE = -1
 
     def __init__(self, learning_rate=0.1, discount_factor=0.9, epsilon=0.1) -> None:
