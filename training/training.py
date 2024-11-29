@@ -9,7 +9,9 @@ for config in CONFIGURATIONS:
         discount_factor=config.discount_factor,
         epsilon=config.epsilon
     )
-    episode_rewards = game.train_agent(num_episodes=config.num_episodes)
+
+    # Training Q-learning agent
+    episode_rewards = game.train_agent(num_episodes=config.num_episodes, reset_q_table=True)
 
     # Save Q-table and results with a unique filename based on config identifier
     game.q_agent.save_q_table(f"../training/{config.identifier}_q_table.csv")

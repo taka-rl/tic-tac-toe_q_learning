@@ -7,6 +7,10 @@ from src.rl import QLearningAgent
 
 
 class TicTacToeGame:
+    WIN = 1
+    TIE = 0
+    LOSE = -1
+
     def __init__(self, learning_rate=0.1, discount_factor=0.9, epsilon=0.1) -> None:
         self.board = Board()
         self.player1 = None
@@ -114,13 +118,26 @@ class TicTacToeGame:
         board.reset_board()
         board.print_board()
 
-    def train_agent(self, num_episodes: int) -> list:
-        """Automatically train the Q-learning agent with a specified number of episodes."""
+    def train_agent(self, num_episodes: int, reset_q_table: bool = True) -> list:
+        """
+        Automatically train the Q-learning agent with a specified number of episodes.
+
+        Parameters:
+            num_episodes (int): episode length
+            reset_q_table (bool): If True, starts training with a fresh Q-table.
+                                  If False, loads an existing Q-table before training.
+
+        Return:
+            list: A list of cumulative rewards per episode
+        """
+
         print("Training the agent")
         self.player1 = Player('agent', 1)
         self.player2 = Player('computer', 2)
 
-        self.q_agent.load_q_table()  # Load existing Q-table if any
+        # Load existing Q-table
+        if not reset_q_table:
+            self.q_agent.load_q_table()
 
         wins, losses, ties = 0, 0, 0  # Track performance metrics
         episode_rewards = [0] * num_episodes  # Pre-allocate rewards list
@@ -145,16 +162,16 @@ class TicTacToeGame:
 
                 # Check game outcome and update Q-values
                 if self.board.check_is_game_over(current_turn, Move(move)):
-                    reward = 1 if current_turn.get_player == 'agent' else -1  # Reward based on agent's perspective
+                    reward = self.WIN if current_turn.get_player == 'agent' else self.LOSE
                     self.q_agent.update_q_value(state, move, next_state, reward)
                     cumulative_reward += reward
-                    if reward == 1:
+                    if reward == self.WIN:
                         wins += 1
                     else:
                         losses += 1
                     break
                 elif self.board.check_is_tie():
-                    reward = 0.5  # Neutral reward for tie
+                    reward = self.TIE  # Neutral reward for tie
                     self.q_agent.update_q_value(state, move, next_state, reward)
                     cumulative_reward += reward
                     ties += 1
@@ -179,15 +196,14 @@ class TicTacToeGame:
             self.q_agent.decay_epsilon()
         return episode_rewards
 
-    @staticmethod
-    def save_training_data(episode_rewards: list, filename: str) -> None:
+    def save_training_data(self, episode_rewards: list, filename: str) -> None:
         """Save episode rewards and game results to CSV files for analysis."""
         episode_len = len(episode_rewards)
         game_results = ['win'] * episode_len
         for i in range(0, episode_len):
-            if episode_rewards[i] == -1.0:
+            if episode_rewards[i] == self.LOSE:
                 game_results[i] = 'lose'
-            elif episode_rewards[i] == 0.5:
+            elif episode_rewards[i] == self.TIE:
                 game_results[i] = 'tie'
 
         training_result_df = pd.DataFrame({"Episode": range(len(episode_rewards)),
