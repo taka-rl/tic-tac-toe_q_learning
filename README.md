@@ -1,5 +1,5 @@
 # Tic-tac-toe with Q-learning
-This is a tic-tac-toe game built using Q-learning, a reinforcement learning algorithm.
+This is a tic-tac-toe game built using Q-learning, a reinforcement learning (RL) algorithm.
 
 As a result of the training with 100,000 episodes where the agent played against a computer that made random moves, the agent won at around 75% of the games against the computer. The average reward was approximately 0.7, and the maximum reward exceeded 0.9.
 
@@ -33,20 +33,7 @@ As a result of the training with 100,000 episodes where the agent played against
             - max(Q(s', a')): Maximum Q-value for the next state s'
             - s: Current state
             - a: Action taken in the current state
-            - r: Reward received after taking action a
-        Reward values:
-            - Win: +1
-            - Tie: +0.5
-            - Loss: -1
-
-    Reinforcement Learning (RL) Environment:
-        - Action: Choose a move between 1 and 9.
-        - State: Board configuration represented as a string, e.g., "[[0, 0, 0], [0, 0, 0], [0, 0, 0]]".
-        - Reward:
-            - Win: +1
-            - Tie: +0.5
-            - Loss: -1
-
+            - r: Reward received after taking action
     Links:
         ・Introduce Q-learning algorithm
         https://towardsdatascience.com/an-ai-agent-learns-to-play-tic-tac-toe-part-3-training-a-q-learning-rl-agent-2871cef2faf0
@@ -54,6 +41,11 @@ As a result of the training with 100,000 episodes where the agent played against
         https://medium.com/@kaneel.senevirathne/teaching-agents-to-play-tic-tac-toe-using-reinforcement-learning-7a9d4d6ee9b3
         https://www.datacamp.com/tutorial/introduction-q-learning-beginner-tutorial?dc_referrer=https%3A%2F%2Fwww.google.com%2F
         https://towardsdatascience.com/reinforcement-learning-implement-tictactoe-189582bea542
+
+## RL Environment
+Action: Choose a move between 1 and 9.  
+State: Board configuration represented as a string, e.g., "[[0, 0, 0], [0, 0, 0], [0, 0, 0]]".  
+Reward: Win: +1, Tie: +0.5, Loss: -1
 
 ## Folder structure
 
