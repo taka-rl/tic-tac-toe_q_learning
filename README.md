@@ -141,3 +141,7 @@ The number of episode is 100000.
 Win/Lose/Tie:  
 Through the training, the number of win increased, the number of lose decreased gradually.   
 ![image](https://github.com/user-attachments/assets/5c3700ef-904b-429e-af85-bf0a1b35ab64)
+
+## Todo
+- Introducing concurrency or parallelism to speed up training
+- Conducting Multi-Agent training
