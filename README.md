@@ -89,7 +89,7 @@ Choose a game mode between 1 and 6.
 1. You can set parameters for the training in config.py  
 ![Screenshot 2024-11-11 at 10 23 30](https://github.com/user-attachments/assets/1f6e7db7-3d50-42ce-81cc-77329ce34293)
 
-2. When you are ready, then run training.py  
+2. When you are ready, then run training.py. Or if you would like to use parallel training, run parallel_training.py.  
 3. When the training finished, the following messages show up  
 ![image](https://github.com/user-attachments/assets/b6cd8e47-0b38-428d-8ba9-afb9ec89295b)
 
