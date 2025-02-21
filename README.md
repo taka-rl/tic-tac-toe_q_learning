@@ -61,7 +61,8 @@ Reward: Win: +1, Tie: +0.5, Loss: -1
     │   ├── training.py         # for training
     │   ├── result_analysis.py  # for analyzing the training result
     │   ├── training_result.csv # training result file
-    │   └── q_table.csv         # Q-table file generated after 100,000 episodes
+    │   ├── q_table.csv         # Q-table file generated after 100,000 episodes
+    │   └── README.md           #
     ├── main.py                 # Run the app
     ├── .gitignore
     ├── requirements.txt
@@ -85,29 +86,8 @@ Choose a game mode between 1 and 6.
 ![image](https://github.com/user-attachments/assets/d3f527d9-5600-40a5-b7e0-9ece4d765c8f)
 
 ## Training
-### Training preparation  
-1. You can set parameters for the training in config.py  
-![Screenshot 2024-11-11 at 10 23 30](https://github.com/user-attachments/assets/1f6e7db7-3d50-42ce-81cc-77329ce34293)
-
-2. When you are ready, then run training.py. Or if you would like to use parallel training, run parallel_training.py.  
-3. When the training finished, the following messages show up  
-![image](https://github.com/user-attachments/assets/b6cd8e47-0b38-428d-8ba9-afb9ec89295b)
-
-4. After the training, q_table.csv and training_result.csv files are saved in the training folder.  
-    q_table.csv looks like this.  
-    ![image](https://github.com/user-attachments/assets/4ed68e55-4962-431f-a8e9-ac6438b9fd37)  
-    training_result.csv looks like this.  
-    ![image](https://github.com/user-attachments/assets/e57ead6e-f8a4-4460-bf55-ea26671b5c36)  
-
-## How to use result_analysis.py for result analysis
-1. Make sure the result file path in result_analysis.py
-   ![image](https://github.com/user-attachments/assets/7fce67d6-558b-4423-8f5a-c8c083c7d2f3)
-
-2. Make sure the identifier value in CONFIGURATION defined in config.py  
-   The identifier values must be matched with the result files.
-
-3. Run result_analysis.py
-   You will see the figures on the Result section.  
+If you would like to play tic-tac-toe simply, run `training.py`.   
+Please refer to this [link](https://github.com/taka-rl/tic-tac-toe_q_learning/tree/main/training/README.md) for more information.
 
 
 ## Result
