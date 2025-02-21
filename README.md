@@ -86,7 +86,7 @@ Choose a game mode between 1 and 6.
 ![image](https://github.com/user-attachments/assets/d3f527d9-5600-40a5-b7e0-9ece4d765c8f)
 
 ## Training
-If you would like to play tic-tac-toe simply, run `training.py`.   
+If you would like to train an agent, run `training.py`.   
 Please refer to this [link](https://github.com/taka-rl/tic-tac-toe_q_learning/tree/main/training/README.md) for more information.
 
 
